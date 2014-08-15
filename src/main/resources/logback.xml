@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ========================================================================== 
+= Logging configuration goes here. 
+=
+= Author: Adam Darmanin. 
+= Version: 1
+============================================================================ -->
+<configuration>
+	<logger name="org.springframework.web" level="INFO" />
+	<logger name="org.adam" level="DEBUG" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="ERROR">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
