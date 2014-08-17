@@ -24,10 +24,7 @@ public class WebConfig extends WebMvcAutoConfigurationAdapter {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		LOGGER.debug("Wiring in view controllers.");
-
-		registry.addViewController("/home").setViewName("home");
-		registry.addViewController("/").setViewName("home");
+		registry.addViewController("/").setViewName("home.html");
 	}
 
 	@Override
@@ -37,4 +34,5 @@ public class WebConfig extends WebMvcAutoConfigurationAdapter {
 
 		super.configureMessageConverters(converters);
 	}
+
 }

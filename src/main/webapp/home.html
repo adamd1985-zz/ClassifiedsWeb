@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="classifiedsMain">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="description" content="Classified webfront." />
+<meta name="author" content="Adam Darmanin" />
+
+<link rel="stylesheet"
+	href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="webjars/bootstrap-modal/2.2.5/css/bootstrap-modal.css" />
+
+<script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="webjars/bootstrap-modal/2.2.5/js/bootstrap-modal.js"></script>
+<script type="text/javascript"
+	src="webjars/angularjs/1.2.12/angular.min.js"></script>
+<script type="text/javascript"
+	src="webjars/angularjs/1.2.12/angular-resource.min.js"></script>
+<script type="text/javascript"
+	src="webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js"></script>
+
+<script type="text/javascript" src="assets/js/service/classifieds.js"></script>
+<script type="text/javascript" src="assets/js/controller/classifieds.js"></script>
+<script type="text/javascript" src="assets/js/classifiedsApp.js"></script>
+
+<title>Classifieds</title>
+
+</head>
+
+<body ng-controller="classifiedsCtrl">
+	<h2>Welcome to Classifieds - TEST</h2>
+	<p>
+		Classifieds -> filer by category: <select ng-model="categoryFilter">
+			<option value="ALL" selected="selected">All</option>
+			<option value="CARS">Cars</option>
+			<option value="PHONES">Phones</option>
+			<option value="SERVICES">Services</option>
+		</select>
+	</p>
+	<table id="classifiedTableId" class="table">
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>City</th>
+			<th>Category</th>
+		</tr>
+		<tr ng-repeat="classified in classifieds">
+			<td>{{classified.title}}</td>
+			<td>{{classified.price}}</td>
+			<td>{{classified.email}}</td>
+			<td>{{classified.phone}}</td>
+			<td>{{classified.city}}</td>
+			<td>{{classified.category}}</td>
+		</tr>
+	</table>
+	<p>
+		<button class="btn btn-lg btn-success" data-toggle="modal"
+			data-target="#addClassifiedModalDiv">Add</button>
+		- Add new classified.
+	</p>
+	<div class="modal fade" id="addClassifiedModalDiv" tabindex="-1"
+		role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">New Classified</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<table>
+							<tr>
+								<td><label>Title: </label></td>
+								<td><input ng-model="newClassified.title" /></td>
+							</tr>
+							<tr>
+								<td><label>Price: </label></td>
+								<td><input ng-model="newClassified.price" /></td>
+							</tr>
+							<tr>
+								<td><label>Email: </label></td>
+								<td><input ng-model="newClassified.email" /></td>
+							</tr>
+							<tr>
+								<td><label>Phone: </label></td>
+								<td><input ng-model="newClassified.phone" /></td>
+							</tr>
+							<tr>
+								<td><label>City: </label></td>
+								<td><input ng-model="newClassified.city" /></td>
+							</tr>
+							<tr>
+								<td><label>Category: </label></td>
+								<td><select ng-model="newClassified.category">
+										<option value="CARS" selected="selected">Cars</option>
+										<option value="PHONES">Phones</option>
+										<option value="SERVICES">Services</option>
+								</select></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						ng-cancel="cancel()">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="save()">Save
+						changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
