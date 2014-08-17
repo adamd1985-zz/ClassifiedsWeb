@@ -1,3 +1,5 @@
+# Webapp RAD exercise with SpringBoot
+
 In this exercise I will create a Classifieds Web Application with RAD and technologies and BDD principles.
 
 ## The Requirements
@@ -34,3 +36,46 @@ Using simple sprints within a day the following can be achieved:
 * Stage 3: Backend logic - datarepo and database plus tests.
 * Stage 4: Frontend logic - website.
 * OPTIONAL stage 5: security 
+
+## Development
+
+### Stage 1: Simple Skeleton code
+
+I prepared the code base here to build on.
+
+Functional administration controller was prepared to prove liveliness of the wiring:
+
+org.adam.controller.AdminController
+
+and its simple integration test: 
+
+org.adam.integrationtest.AdminControllerIT
+
+Which proves the REST contracts in a standalone environment.
+
+
+### Stage 2/3: Functional middleware and Data repo
+
+The next phase was to provide business logic in the form of a REST controller:
+
+org.adam.controller.ClassifiedController
+
+and its integration test:
+
+org.adam.integrationtest.ClassifiedControllerIT
+
+This controller creates a life spring driven environment (unlike the admin test which works standalone) 
+and hits the rest controller with the given rest call and checks the HATEOS returns.
+
+Using mockito, we inject the mocks within the spring context to abstract the controller from the persistence
+layer, thus this is a top-down integration test.
+
+The persistence layer was built upon using Spring JPA technology backed by the lightweight H2 database.
+The Data Repository logic within spring will construct the necessary CRUD repository, session management and 
+data source to backup our domain repository - all abstracted from the developer until further manipulation is
+required. 
+
+-------------------------------------------------------------------------------
+
+Copyright © 2014 Adam Darmanin. All rights reserved
+

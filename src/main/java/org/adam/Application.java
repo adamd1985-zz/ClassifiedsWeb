@@ -1,11 +1,12 @@
 package org.adam;
 
+import org.adam.classified.domain.CategoryEnum;
+import org.adam.classified.domain.Classified;
+import org.adam.classified.domain.repositories.ClassifiedRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * Main entry point to start up application.
@@ -13,9 +14,6 @@ import org.springframework.context.annotation.Configuration;
  * @author adam darmanin
  * @version 1
  */
-@EnableAutoConfiguration
-@Configuration
-@ComponentScan
 public class Application {
 
 	private static final Logger LOGGER = LoggerFactory
@@ -26,6 +24,25 @@ public class Application {
 	public static void main(String[] args) {
 		LOGGER.info("Starting Classifieds App.");
 
-		SpringApplication.run(Application.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(
+				new Object[] { RootConfig.class, WebConfig.class,
+						JpaConfig.class }, args);
+
+		ClassifiedRepository repository = context
+				.getBean(ClassifiedRepository.class);
+
+		// Dummy ads
+		repository.save(new Classified("Phone 1", 10, "This is a phone",
+				"user@phone.com", "2223333444", "Malaga", CategoryEnum.PHONES));
+		repository.save(new Classified("Phone 2", 10, "This is a phone",
+				"user@phone.com", "2223333444", "Malaga", CategoryEnum.PHONES));
+		repository
+				.save(new Classified("Service", 10, "This is a phone",
+						"user@phone.com", "2223333444", "Malaga",
+						CategoryEnum.SERVICES));
+		repository.save(new Classified("Car 1", 10, "This is a phone",
+				"user@phone.com", "2223333444", "Malaga", CategoryEnum.CARS));
+		repository.save(new Classified("Car 2", 10, "This is a phone",
+				"user@phone.com", "2223333444", "Malaga", CategoryEnum.CARS));
 	}
 }
