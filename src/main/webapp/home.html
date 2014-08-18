@@ -7,16 +7,14 @@
 <meta name="description" content="Classified webfront." />
 <meta name="author" content="Adam Darmanin" />
 
+
+<link rel="stylesheet" href="assets/css/root.css" />
 <link rel="stylesheet"
 	href="webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="webjars/bootstrap-modal/2.2.5/css/bootstrap-modal.css" />
 
 <script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="webjars/bootstrap-modal/2.2.5/js/bootstrap-modal.js"></script>
 <script type="text/javascript"
 	src="webjars/angularjs/1.2.12/angular.min.js"></script>
 <script type="text/javascript"
@@ -32,10 +30,84 @@
 
 </head>
 
-<body ng-controller="classifiedsCtrl">
+<body ng-controller="classifiedsCtrl" class="container">
+	<!-- /.modal -->
+	<div id="addClassifiedModalDiv" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Confirmation</h4>
+				</div>
+				<div class="modal-body">
+					<form name="classifiedForm" novalidate>
+						<div class=" alert-danger" role="alert"
+							ng-show="!classifiedForm.$valid">
+							<strong>Warning!</strong> You have errors in the inputs, cannot
+							submit.
+						</div>
+						<table>
+							<tr>
+								<td><label>Title: </label></td>
+								<td><input ng-model="newClassified.title"
+									class="form-control" required
+									placeholder="{{newClassified.title}}" /></td>
+							</tr>
+							<tr>
+								<td><label>Price: </label></td>
+								<td><input ng-model="newClassified.price"
+									class="form-control" required type="number"
+									placeholder="{{newClassified.price}}" /></td>
+							</tr>
+							<tr>
+								<td><label>Email: </label></td>
+								<td><input ng-model="newClassified.email"
+									class="form-control" required type="email"
+									placeholder="{{newClassified.email}}" /></td>
+							</tr>
+							<tr>
+								<!-- Due to localisation, tel is a simple text until format is provided -->
+								<td><label>Phone: </label></td>
+								<td><input ng-model="newClassified.phone"
+									class="form-control" required type="tel"
+									placeholder="{{newClassified.phone}}" /></td>
+							</tr>
+							<tr>
+								<td><label>City: </label></td>
+								<td><input ng-model="newClassified.city"
+									class="form-control" required
+									placeholder="{{newClassified.city}}" /></td>
+							</tr>
+							<tr>
+								<td><label>Category: </label></td>
+								<td><select ng-model="newClassified.category"
+									class="form-control">
+										<option value="CARS" selected="selected">Cars</option>
+										<option value="PHONES">Phones</option>
+										<option value="SERVICES">Services</option>
+								</select></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						ng-click="cancel()">Close</button>
+					<button type="button" class="btn btn-primary start"
+						data-loading-text="<i class='icon-spinner icon-spin icon-large'></i> @Localization.Saving"
+						ng-disabled="!classifiedForm.$valid" ng-click="save()">Save
+						changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<h2>Welcome to Classifieds - TEST</h2>
+
 	<p>
-		Classifieds -> filer by category: <select ng-model="categoryFilter">
+		Classifieds -> filer by category: <select ng-model="categoryFilter"
+			ng-change="filterByCategory()">
 			<option value="ALL" selected="selected">All</option>
 			<option value="CARS">Cars</option>
 			<option value="PHONES">Phones</option>
@@ -61,60 +133,11 @@
 		</tr>
 	</table>
 	<p>
-		<button class="btn btn-lg btn-success" data-toggle="modal"
+		<button class="btn btn-primary" data-toggle="modal"
 			data-target="#addClassifiedModalDiv">Add</button>
 		- Add new classified.
 	</p>
-	<div class="modal fade" id="addClassifiedModalDiv" tabindex="-1"
-		role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">New Classified</h4>
-				</div>
-				<div class="modal-body">
-					<form>
-						<table>
-							<tr>
-								<td><label>Title: </label></td>
-								<td><input ng-model="newClassified.title" /></td>
-							</tr>
-							<tr>
-								<td><label>Price: </label></td>
-								<td><input ng-model="newClassified.price" /></td>
-							</tr>
-							<tr>
-								<td><label>Email: </label></td>
-								<td><input ng-model="newClassified.email" /></td>
-							</tr>
-							<tr>
-								<td><label>Phone: </label></td>
-								<td><input ng-model="newClassified.phone" /></td>
-							</tr>
-							<tr>
-								<td><label>City: </label></td>
-								<td><input ng-model="newClassified.city" /></td>
-							</tr>
-							<tr>
-								<td><label>Category: </label></td>
-								<td><select ng-model="newClassified.category">
-										<option value="CARS" selected="selected">Cars</option>
-										<option value="PHONES">Phones</option>
-										<option value="SERVICES">Services</option>
-								</select></td>
-							</tr>
-						</table>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal"
-						ng-cancel="cancel()">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="save()">Save
-						changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 </body>
 </html>

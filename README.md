@@ -75,6 +75,15 @@ The Data Repository logic within spring will construct the necessary CRUD reposi
 data source to backup our domain repository - all abstracted from the developer until further manipulation is
 required. 
 
+### Stage 4: Webfront
+
+Wired in using Angular and boorstrap with minimal boilerplate code to handle view manipulation.
+Angular seamlessly wired in to the Rest controllers using ngResource. 
+Angular validation used to control input of the classified.
+
+All are packaged alongside webjars, making this webapp as streamline as posible with minimal effort to 
+run and maintain. 
+
 -------------------------------------------------------------------------------
 
 Copyright © 2014 Adam Darmanin. All rights reserved
