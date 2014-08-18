@@ -84,6 +84,14 @@ Angular validation used to control input of the classified.
 All are packaged alongside webjars, making this webapp as streamline as posible with minimal effort to 
 run and maintain. 
 
+## Planned Improvements and TODOs
+
+* Proper HATEOS returns with links to access entities.
+* Better form validations (which field is failing).
+* Pagination
+* Convert to proper WAR for scaling.
+* Replace H2 with MySql or another DB for scaling to larger dataload.
+
 -------------------------------------------------------------------------------
 
 Copyright © 2014 Adam Darmanin. All rights reserved

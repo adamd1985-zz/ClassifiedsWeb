@@ -55,9 +55,15 @@
 									placeholder="{{newClassified.title}}" /></td>
 							</tr>
 							<tr>
+								<td><label>Description: </label></td>
+								<td><input ng-model="newClassified.text"
+									class="form-control" required
+									placeholder="{{newClassified.text}}" /></td>
+							</tr>
+							<tr>
 								<td><label>Price: </label></td>
 								<td><input ng-model="newClassified.price"
-									class="form-control" required type="number"
+									class="form-control" type="number"
 									placeholder="{{newClassified.price}}" /></td>
 							</tr>
 							<tr>
@@ -70,7 +76,7 @@
 								<!-- Due to localisation, tel is a simple text until format is provided -->
 								<td><label>Phone: </label></td>
 								<td><input ng-model="newClassified.phone"
-									class="form-control" required type="tel"
+									class="form-control" type="tel"
 									placeholder="{{newClassified.phone}}" /></td>
 							</tr>
 							<tr>
@@ -117,6 +123,7 @@
 	<table id="classifiedTableId" class="table">
 		<tr>
 			<th>Title</th>
+			<th>Description</th>
 			<th>Price</th>
 			<th>Email</th>
 			<th>Phone</th>
@@ -125,6 +132,7 @@
 		</tr>
 		<tr ng-repeat="classified in classifieds">
 			<td>{{classified.title}}</td>
+			<td>{{classified.text}}</td>
 			<td>{{classified.price}}</td>
 			<td>{{classified.email}}</td>
 			<td>{{classified.phone}}</td>

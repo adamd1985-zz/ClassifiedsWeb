@@ -30,11 +30,13 @@ public class Classified implements Serializable {
 
 	@NotNull
 	private String title;
-	@NotNull
 	private Integer price;
+	@NotNull
 	private String text;
+	@NotNull
 	private String email;
 	private String phone;
+	@NotNull
 	private String city;
 	@NotNull
 	private CategoryEnum category;

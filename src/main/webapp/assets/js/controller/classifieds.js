@@ -20,7 +20,8 @@ var cntrl = module.controller('classifiedsCtrl', [ '$scope',
 			$scope.classifieds = classifiedsService.query();
 			$scope.newClassified = {
 				title : "Title",
-				price : "00",
+				text : "description here",
+				price : "",
 				email : "XXX@XX.com",
 				phone : "XXXXXXXXXX",
 				city : "City",
@@ -49,7 +50,8 @@ var cntrl = module.controller('classifiedsCtrl', [ '$scope',
 			$scope.cancel = function() {
 				$scope.newClassified = {
 					title : "Title",
-					price : 0,
+					text : "description here",
+					price : "",
 					email : "XXX@XX.com",
 					phone : "XXXXXXXXXX",
 					city : "City",
