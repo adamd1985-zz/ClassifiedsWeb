@@ -92,6 +92,28 @@ run and maintain.
 * Convert to proper WAR for scaling.
 * Replace H2 with MySql or another DB for scaling to larger dataload.
 
+# Compilation and Deployment
+
+Download or check out from: https://github.com/adamd1985/ClassifiedsWeb.git
+
+Compile and run with maven: 
+
+```
+mvn clean package
+```
+
+From your browser check the liveliness of the server: 
+
+```
+http://localhost:8080/classifieds-web/server/heartbeat
+```
+
+access webfront as follows:
+
+```
+http://localhost:8080/classifieds-web/
+```
+
 -------------------------------------------------------------------------------
 
 Copyright © 2014 Adam Darmanin. All rights reserved
